@@ -11,7 +11,7 @@ export const verifyToken = async (req, res, next) => {
 
     const decoded = jwt.verify(token, JWT_SECRET);
 
-    // ✅ Populate role to get name & permissions
+    // Populate role to get name & permissions
     const user = await User.findById(decoded.id)
       .populate("role", "name permissions")
       .select("-password");
